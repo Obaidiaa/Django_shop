@@ -3,10 +3,23 @@
 import os
 import sys
 
+from django.core.exceptions import ImproperlyConfigured
 
-def main():
+def get_env_variable(var_name):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the {} envirment variable".format(var_name)
+        raise ImproperlyConfigured(error_msg)
+
+if __name__ == '__main__':
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+
+    DJANGO_EXECUTION_ENVIRONMENT = get_env_variable('DJANGO_EXECUTION_ENVIRONMENT')
+    if(DJANGO_EXECUTION_ENVIRONMENT == 'LOCAL'):
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE","config.settings.local")
+    if(DJANGO_EXECUTION_ENVIRONMENT == 'PRODUCTION'):
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE","conig.settings.production")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -16,7 +29,3 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
-
-
-if __name__ == '__main__':
-    main()
