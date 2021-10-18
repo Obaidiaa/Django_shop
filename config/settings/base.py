@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+from manage import get_env_variable
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+xabidp#2xa4&qvntzwv0p+4&mbw8*3c#=#v2spp!jk_2fm1-o'
+
+DJANGO_SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
+SECRET_KEY = DJANGO_SECRET_KEY
 
 
 
