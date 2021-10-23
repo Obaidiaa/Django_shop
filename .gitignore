@@ -144,8 +144,8 @@ fabric.properties
 *.pdf
 
 # image files
-*.png
-*.jpg
+# *.png
+# *.jpg
 .DS_Store
 
 # PyCharm files
