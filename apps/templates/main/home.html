@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load bootstrap5 %}
 {% load fontawesome_5 %}
-
+{%load static%}
 {% block title %} Home
 {% endblock %}
 
@@ -9,18 +9,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class="jumbotron centered-text">
-        <h1>Hello djangonaut!</h1>
-    </div>
-    <p class="centered-text">This is regular text (i.e., with no Bootstrap applied)</p>
-    <p class="centered-text"><span class="text-muted">This is a bootstrapped text - if different from the one above (i.e., it is greyish),
-        Bootstrap works!</span></p>
-
-    <p class="centered-text"><span class="text-muted">This is a bootstrapped text - if different from the one above 
-        (i.e., it is greyish),
-        Bootstrap works!</span></p>
     <p class="centered-text">If you can see a user icon {% fa5_icon 'user' %} here, font awesome works!</p>
-{% endblock %}
+
+    <hr>
+    <div class="container-fluid">
+        <p>Our media server works if you can successfully see twitter's logo here:
+            <a href="https://twitter.com/tumblingprgrmmr" title="tumbling programmer's twitter account">
+                <img src="{{ MEDIA_URL }}img.png" alt="twitter logo"></a>
+        </p>
+        <p>Static-serving files works too if you can successfully see twitter's logo here:
+            <a href="https://twitter.com/tumblingprgrmmr" title="tumbling programmer's twitter account">
+                <img src="{% static 'img/img.png'%}" alt="twitter logo"></a>
+        </p>
+    </div>{% endblock %}
 
 {% block scripts %}
 {% endblock %}
