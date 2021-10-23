@@ -1,6 +1,8 @@
 {% extends 'bootstrap5/bootstrap5.html' %}
 {% load bootstrap5 %}
 {% load static %}
+{% load fontawesome_5 %}
+
 
 {% block bootstrap5_title %}
     {% block title %}
@@ -9,7 +11,9 @@
 
 {% block bootstrap5_extra_head %}
     <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+    {% fontawesome_5_static %} 
     {% bootstrap_javascript %}
+
     {% block head %}        
     {% endblock %}
 {% endblock %}

@@ -51,6 +51,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'bootstrap5',
+    'fontawesome_5',
 ]
 
 LOCAL_APPS = [

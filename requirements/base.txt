@@ -6,3 +6,7 @@ sqlparse==0.4.2
 django-bootstrap-v5==1.0.6
 
 django-environ==0.8.0
+
+django-fontawesome-5==1.0.18
+PyYAML==6.0
+
