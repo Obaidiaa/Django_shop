@@ -1,1 +1,5 @@
 -r base.txt
+
+django-livereload-server==0.2.3
+six==1.16.0
+tornado==6.1
