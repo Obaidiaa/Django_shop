@@ -1,5 +1,6 @@
 {% extends 'bootstrap5/bootstrap5.html' %}
 {% load bootstrap5 %}
+{% load static %}
 
 {% block bootstrap5_title %}
     {% block title %}
@@ -7,6 +8,7 @@
 {% endblock %}
 
 {% block bootstrap5_extra_head %}
+    <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
     {% bootstrap_javascript %}
     {% block head %}        
     {% endblock %}
@@ -18,6 +20,7 @@
 {% endblock %}
 
 {% block bootstrap5_extra_script %}
+    <script src="{% static 'js/global.js' %}"></script>
     {% block scripts %}
     {% endblock %}
 {% endblock %}

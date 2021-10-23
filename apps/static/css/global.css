@@ -1,1 +1,4 @@
-
+/* global css code goes here */
+.centered-text {
+    text-align: center;
+}
