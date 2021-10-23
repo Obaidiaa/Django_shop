@@ -12,10 +12,21 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+import environ
+import os
 from manage import get_env_variable
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
 
+ROOT_DIR = str(environ.Path(__file__) - 4)
+APPS_DIR = str(os.path.join(ROOT_DIR,'apps'))
+TEMPLATES_DIR = str(os.path.join(APPS_DIR,'templates'))
+STATIC_DIR = str(os.path.join(APPS_DIR,'static'))
+MEDIA_ROOT = str(os.path.join(APPS_DIR,'media'))
+DATABASE_FILE_NAME = str(os.path.join(APPS_DIR,'db.sqlite3'))
+STATIC_ROOT = str(os.path.join(ROOT_DIR,'staticfiles'))
+MEDIA_URL = '/media/'
+STATICFILES_DIRS = [STATIC_DIR, ]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -61,7 +72,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATES_DIR
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +96,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DATABASE_FILE_NAME,
     }
 }
 
