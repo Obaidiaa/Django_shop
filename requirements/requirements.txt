@@ -1,6 +1,12 @@
 asgiref==3.4.1
+beautifulsoup4==4.10.0
 Django==3.2.8
-django-bootstrap3==15.0.0
+django-bootstrap-v5==1.0.6
 django-environ==0.8.0
+importlib-metadata==3.10.1
+importlib-resources==5.3.0
 pytz==2021.3
+soupsieve==2.2.1
 sqlparse==0.4.2
+typed-ast==1.4.3
+zipp==3.6.0
