@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load fontawesome_5 %}
+
+{%load static%}
+{% block title %} Home
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container centered-text">
+{{current}}
+    <form id="add_product_form">
+        {% csrf_token %}
+        {% comment %} {{ form.as_table }} {% endcomment %}
+    <label for="id_product_name">Product name:</label>
+    <input id="id_product_name" maxlength="100" value="1" name="product_name" required="" type="text">
+    <label for="id_product_skd">Product skd:</label>
+    <input id="id_product_skd" maxlength="50" value="1" name="product_skd" required="" type="text">
+    <label for="id_product_price">Product price:</label>
+    <input id="id_product_price" name="product_price" value="1" required="" step="0.01" type="number">
+    <label for="id_product_stock">Product stock:</label>
+    <input id="id_product_stock" name="product_stock" value="1" required="" step="0.01" type="number">
+    <label for="id_product_desc">Product desc:</label>
+    <input id="id_product_desc" maxlength="240" value="1" name="product_desc" required="" type="text">
+    <input id="add_product" type="submit" value="Submit">
+    </form>
+    <div id="message">
+
+
+    </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).on('submit','#add_product_form',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'/addProduct/',
+            data: $("#add_product_form").serialize(),
+            //{
+            //    data: $("#add_product_form").serialize(),
+            //    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            //},
+            success:function(data){
+                  $("#add_product_form").innerHTML = data;
+                  console.log(data)
+                },
+            error:function(data){
+                $("#add_product_form").innerHTML = data;
+            }
+            })
+        });
+</script>
+
+{% endblock %}

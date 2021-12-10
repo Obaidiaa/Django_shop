@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% load bootstrap5 %}
 {% load fontawesome_5 %}
+
 {%load static%}
+    {% comment %} <link rel="stylesheet" href="{% static 'css/global.css' %}"/> {% endcomment %}
 {% block title %} Home
 {% endblock %}
 
@@ -9,19 +11,15 @@
 {% endblock %}
 
 {% block content %}
-    <p class="centered-text">If you can see a user icon {% fa5_icon 'user' %} here, font awesome works!</p>
 
-    <hr>
-    <div class="container-fluid">
-        <p>Our media server works if you can successfully see twitter's logo here:
-            <a href="https://twitter.com/tumblingprgrmmr" title="tumbling programmer's twitter account">
-                <img src="{{ MEDIA_URL }}img.png" alt="twitter logo"></a>
-        </p>
-        <p>Static-serving files works too if you can successfully see twitter's logo here:
-            <a href="https://twitter.com/tumblingprgrmmr" title="tumbling programmer's twitter account">
-                <img src="{% static 'img/img.png'%}" alt="twitter logo"></a>
-        </p>
-    </div>{% endblock %}
+<div class="container centered-text">
+    {% comment %} {% include "main/slider.html" %} {% endcomment %}
+    <div>
+    {% include "products/products_grid.html" %}
+    </div>
+
+    </div>
+{% endblock %}
 
 {% block scripts %}
 {% endblock %}
