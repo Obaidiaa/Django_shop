@@ -1,6 +1,7 @@
 
 import json
 from os import error, stat
+from django.db.models.fields.files import ImageField
 from django.http import request,QueryDict
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -19,24 +20,31 @@ def addProduct(request):
         # create a form instance and populate it with data from the request:
         # d = QueryDict(request.POST)
         # print(d)
-        print(request.POST)
+        print(request.POST,request.FILES)
         # print(request.POST['data'].split('&'))
         
-        form = ProductAddForm(request.POST)
-        # form.product_name = d.get('product_name')
-        # form.product_skd = d.get('product_skd')
-        # form.product_price = float(d.get('product_price'))
-        # form.product_stock = float(d.get('product_stock'))
-        # form.product_desc = d.get('product_desc')
-        # e = ProductAddForm(form)
-        # print(e)
-        # print(form.errors)
-        # errorForm = form.errors
+        form = ProductAddForm( data=request.POST,files=request.FILES)
         print(form.errors)
         # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            form.save()
+            # process the data in form.cleaned_data as required 
+            product_name = form.cleaned_data.get('product_name')
+            product_skd = form.cleaned_data.get('product_skd')
+            product_price = float(form.cleaned_data.get('product_price'))
+            product_stock = float(form.cleaned_data.get('product_stock'))
+            product_desc = form.cleaned_data.get('product_desc')
+            product_image = form.cleaned_data.get('product_image')
+            obj = ProductModel.objects.create( 
+                                 product_name = product_name,  
+                                 product_skd = product_skd,
+                                 product_price = product_price,
+                                 product_stock = product_stock,
+                                 product_desc = product_desc,
+                                 product_image = product_image 
+                                 ) 
+            obj.save() 
+            print(obj)
+            # form.save()
             return JsonResponse({"instance": list(ProductModel.objects.all().values())}, status=200)
         else:
             return JsonResponse({"error": list(form.errors.values())}, status=200)
